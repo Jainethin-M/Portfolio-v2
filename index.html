@@ -21,6 +21,27 @@
 </head>
 
 <body>
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+  </div>
+
+  <!-- Cursor glow + sparkle layer -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div class="sparkles" id="sparkles" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Journey rail navigation (desktop) -->
+  <aside class="journey-rail" aria-label="Journey navigation">
+    <div class="journey-rail-inner" id="journeyRailInner"></div>
+  </aside>
+
+  <!-- Floating next checkpoint button -->
+  <button class="next-checkpoint" id="nextCheckpoint" type="button" aria-label="Next checkpoint">
+    <span class="nc-arrow" aria-hidden="true">↓</span>
+    <span class="nc-label">Next</span>
+  </button>
+
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" id="top">
@@ -30,15 +51,15 @@
       </a>
 
       <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
-        <span class="nav-toggle-bars" aria-hidden="true"></span>
+        <span class="nav-toggle-bars" aria-hidden="true"><span></span></span>
       </button>
 
       <div class="nav-links" id="navLinks">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact" class="btn btn-sm">Contact</a>
+        <a href="#about" data-nav="about">About</a>
+        <a href="#skills" data-nav="skills">Skills</a>
+        <a href="#experience" data-nav="experience">Experience</a>
+        <a href="#projects" data-nav="projects">Projects</a>
+        <a href="#contact" data-nav="contact" class="btn btn-sm">Contact</a>
       </div>
 
       <button class="theme-toggle" type="button" aria-label="Toggle theme">
@@ -50,15 +71,20 @@
 
   <main id="main">
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero" data-step="00">
       <div class="hero-bg" aria-hidden="true"></div>
 
       <div class="container hero-grid">
         <div class="hero-copy reveal">
-          <p class="eyebrow">Full‑Stack Developer (MERN) • Coimbatore</p>
+          <p class="eyebrow">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            Full‑Stack Developer (MERN) • Coimbatore
+          </p>
+
           <h1>
             Hi, I’m <span class="accent">Jainethin M</span>.
           </h1>
+
           <p class="subtitle">
             I build clean, fast web apps with <strong>React</strong> + <strong>Node.js</strong>.
             I love <strong>debugging</strong>, deep‑diving into systems, and shipping projects people can actually use.
@@ -72,40 +98,40 @@
           </div>
 
           <div class="hero-meta">
-            <div class="meta-item">
+            <div class="meta-item magnetic">
               <span class="meta-label">Open to</span>
               <span class="meta-value">Full‑Stack roles • Coimbatore / Bangalore / Hyderabad / Chennai</span>
             </div>
-            <div class="meta-item">
+            <div class="meta-item magnetic">
               <span class="meta-label">Currently learning</span>
               <span class="meta-value">Cybersecurity fundamentals (alongside work)</span>
             </div>
           </div>
 
           <div class="social">
-            <a class="icon-link" href="https://www.linkedin.com/in/jainethin-m/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <a class="icon-link magnetic" href="https://www.linkedin.com/in/jainethin-m/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.2 23.8h4.6V7.9H.2v15.9zM8.1 7.9h4.4v2.2h.1c.6-1.1 2.1-2.3 4.4-2.3 4.7 0 5.6 3.1 5.6 7.1v8.9h-4.6v-7.9c0-1.9 0-4.3-2.6-4.3s-3 2-3 4.1v8.1H8.1V7.9z"/></svg>
               <span>LinkedIn</span>
             </a>
 
-            <a class="icon-link" href="https://github.com/Jainethin-M" target="_blank" rel="noreferrer" aria-label="GitHub">
+            <a class="icon-link magnetic" href="https://github.com/Jainethin-M" target="_blank" rel="noreferrer" aria-label="GitHub">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.7.5.6 5.7.6 12.1c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2.2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.9 0-1.3.5-2.4 1.2-3.3-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2 1-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.9 1.2 2 1.2 3.3 0 4.6-2.7 5.6-5.3 5.9.4.3.8 1 .8 2.1v3.1c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.4 5.7 18.3.5 12 .5z"/></svg>
               <span>GitHub</span>
             </a>
 
-            <a class="icon-link" href="https://www.codechef.com/users/jainethin123" target="_blank" rel="noreferrer" aria-label="CodeChef">
+            <a class="icon-link magnetic" href="https://www.codechef.com/users/jainethin123" target="_blank" rel="noreferrer" aria-label="CodeChef">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7c0-2.2 1.8-4 4-4h8c2.2 0 4 1.8 4 4v10c0 2.2-1.8 4-4 4H8c-2.2 0-4-1.8-4-4V7zm4-1.5c-.8 0-1.5.7-1.5 1.5v10c0 .8.7 1.5 1.5 1.5h8c.8 0 1.5-.7 1.5-1.5V7c0-.8-.7-1.5-1.5-1.5H8z"/></svg>
               <span>CodeChef</span>
             </a>
 
-            <a class="icon-link" href="https://leetcode.com/u/lJnsJQILgv/" target="_blank" rel="noreferrer" aria-label="LeetCode">
+            <a class="icon-link magnetic" href="https://leetcode.com/u/lJnsJQILgv/" target="_blank" rel="noreferrer" aria-label="LeetCode">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.9 3.3a1.4 1.4 0 0 1 0 2l-1.7 1.7a.9.9 0 0 1-1.3 0 .9.9 0 0 1 0-1.3l1.7-1.7a1.4 1.4 0 0 1 2 0zM10 6.2 5.6 10.6a5.8 5.8 0 0 0 0 8.2 5.8 5.8 0 0 0 8.2 0l4.7-4.7a.9.9 0 0 0 0-1.3.9.9 0 0 0-1.3 0l-4.7 4.7a4 4 0 0 1-5.6 0 4 4 0 0 1 0-5.6l4.4-4.4a.9.9 0 1 0-1.3-1.3zM20.6 11.3H12a.9.9 0 1 0 0 1.8h8.6a.9.9 0 1 0 0-1.8z"/></svg>
               <span>LeetCode</span>
             </a>
           </div>
         </div>
 
-        <aside class="hero-card reveal" aria-label="Highlights">
+        <aside class="hero-card magnetic reveal" aria-label="Highlights">
           <div class="card-head">
             <p class="card-title">Highlights</p>
             <p class="card-subtitle">Quick proof of work</p>
@@ -120,26 +146,47 @@
           </div>
         </aside>
       </div>
+
+      <div class="hero-bottom">
+        <div class="container">
+          <div class="hero-pill reveal">
+            <span class="hero-pill-label">Journey mode</span>
+            <span class="hero-pill-text">Scroll to see checkpoints light up →</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOURNEY MAP -->
+    <section class="section alt" id="journey" data-step="01">
+      <div class="container reveal">
+        <h2 data-step="01">Journey Map</h2>
+        <p class="muted">
+          A roadmap-style view of my profile. Click a checkpoint to jump there.
+        </p>
+
+        <div class="journey-map" id="journeyMap" aria-label="Journey map"></div>
+      </div>
     </section>
 
     <!-- ABOUT -->
-    <section class="section" id="about">
+    <section class="section" id="about" data-step="02">
       <div class="container two-col">
         <div class="reveal">
-          <h2>About</h2>
+          <h2 data-step="02">About</h2>
           <p class="lead">
             I’m a Computer Science graduate focused on <strong>full‑stack development</strong>.
             I enjoy solving problems, building practical applications, and helping others learn through clear explanations.
           </p>
 
           <ul class="bullets">
-            <li><strong>Debugging-first mindset:</strong> I like tracing issues to root cause and fixing them cleanly.</li>
+            <li><strong>Debugging-first mindset:</strong> I trace issues to root cause and fix them cleanly.</li>
             <li><strong>Product thinking:</strong> I build around real workflows (events, student utilities, tracking tools).</li>
             <li><strong>Growth:</strong> I’m learning <strong>cybersecurity</strong> alongside my development work.</li>
           </ul>
         </div>
 
-        <div class="card reveal">
+        <div class="card magnetic reveal">
           <h3 class="card-h3">Quick info</h3>
           <dl class="kv" id="quickInfo"></dl>
         </div>
@@ -147,9 +194,9 @@
     </section>
 
     <!-- SKILLS -->
-    <section class="section alt" id="skills">
+    <section class="section alt" id="skills" data-step="03">
       <div class="container reveal">
-        <h2>Skills</h2>
+        <h2 data-step="03">Skills</h2>
         <p class="muted">
           A blend of full‑stack engineering, strong fundamentals, and ongoing learning.
         </p>
@@ -159,27 +206,30 @@
     </section>
 
     <!-- EXPERIENCE -->
-    <section class="section" id="experience">
+    <section class="section" id="experience" data-step="04">
       <div class="container reveal">
-        <h2>Experience</h2>
-        <div class="timeline" id="experienceTimeline" aria-label="Experience timeline"></div>
+        <h2 data-step="04">Experience</h2>
+        <p class="muted">
+          Internships & work that shaped how I build.
+        </p>
+        <div class="timeline roadmap" id="experienceTimeline" aria-label="Experience timeline"></div>
       </div>
     </section>
 
     <!-- EDUCATION -->
-    <section class="section alt" id="education">
+    <section class="section alt" id="education" data-step="05">
       <div class="container reveal">
-        <h2>Education</h2>
-        <div class="timeline" id="educationTimeline" aria-label="Education timeline"></div>
+        <h2 data-step="05">Education</h2>
+        <div class="timeline roadmap" id="educationTimeline" aria-label="Education timeline"></div>
       </div>
     </section>
 
     <!-- PROJECTS -->
-    <section class="section" id="projects">
+    <section class="section" id="projects" data-step="06">
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <h2>Projects</h2>
+            <h2 data-step="06">Projects</h2>
             <p class="muted">A few highlights + supporting projects. Filter by tag or search.</p>
           </div>
 
@@ -194,7 +244,7 @@
         <div class="project-grid reveal" id="projectsGrid" aria-label="Projects grid"></div>
 
         <div class="center reveal">
-          <a class="btn btn-ghost" href="https://github.com/Jainethin-M?tab=repositories" target="_blank" rel="noreferrer">
+          <a class="btn btn-ghost magnetic" href="https://github.com/Jainethin-M?tab=repositories" target="_blank" rel="noreferrer">
             View more on GitHub →
           </a>
         </div>
@@ -202,20 +252,20 @@
     </section>
 
     <!-- COMMUNITY -->
-    <section class="section alt" id="community">
+    <section class="section alt" id="community" data-step="07">
       <div class="container reveal">
-        <h2>Community & Leadership</h2>
-        <div class="card">
+        <h2 data-step="07">Community & Leadership</h2>
+        <div class="card magnetic">
           <ul class="list" id="communityList"></ul>
         </div>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section class="section" id="contact">
+    <section class="section" id="contact" data-step="08">
       <div class="container contact-grid">
         <div class="reveal">
-          <h2>Contact</h2>
+          <h2 data-step="08">Contact</h2>
           <p class="muted">
             Want to collaborate, hire, or just talk tech? Send a message — I’ll reply as soon as I can.
           </p>
@@ -223,7 +273,7 @@
           <div class="contact-cards" id="contactCards"></div>
         </div>
 
-        <form class="card form reveal" id="contactForm">
+        <form class="card form magnetic reveal" id="contactForm">
           <h3 class="card-h3">Send a message</h3>
 
           <label>
@@ -241,7 +291,7 @@
             <textarea name="message" rows="5" placeholder="What would you like to discuss?" required></textarea>
           </label>
 
-          <button class="btn" type="submit">Send (opens email)</button>
+          <button class="btn magnetic" type="submit">Send (opens email)</button>
           <p class="form-note muted">
             This form uses your mail app via <code>mailto:</code>. No data is stored.
           </p>
@@ -252,10 +302,13 @@
 
   <footer class="footer">
     <div class="container footer-inner">
-      <p>© <span id="year"></span> Jainethin M • Built with vanilla HTML/CSS/JS</p>
-      <a class="muted" href="#top">Back to top ↑</a>
+      <p>© <span id="year"></span> Jainethin M • Associate Product Support Analyst • Ellucian</p>
+      <a class="muted" href="#">Back to top ↑</a>
     </div>
   </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <script src="script.js"></script>
 </body>
