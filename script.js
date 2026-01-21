@@ -77,7 +77,7 @@
         name: "Event Hoster",
         desc: "A platform to organize and manage events without paper (admin + tracking concept).",
         tags: ["Full‑Stack", "MERN", "Product"],
-        links: [{ label: "Live Demo", url: "https://kpr-event-admin.onrender.com" }]
+        links: [{ label: "Live Demo", url: "https://event-admin-console.netlify.app/" }]
       },
       {
         name: "Freshers Name Picker",
