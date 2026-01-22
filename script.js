@@ -809,7 +809,7 @@
 
   function setupResumeButton() {
     const btn = $("#resumeBtn");
-    fetch("resume.pdf", { method: "HEAD" })
+    fetch("jainethin_m_resume.pdf", { method: "HEAD" })
       .then(res => { if (!res.ok) btn.style.display = "none"; })
       .catch(() => { btn.style.display = "none"; });
   }
