@@ -1,0 +1,197 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background: #070b16;
+  scroll-behavior: auto;
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* The immersive home page owns scrolling: it is locked except in scroll-exploration mode. */
+html.nexus-home {
+  overflow: hidden;
+}
+html.nexus-home.scroll-enabled {
+  overflow-y: auto;
+}
+
+body {
+  @apply bg-nexus-bg font-sans text-nexus-text antialiased;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  @apply font-display;
+}
+
+:focus-visible {
+  outline: 2px solid #25d9f8;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: rgba(37, 217, 248, 0.35);
+}
+
+.nexus-canvas {
+  position: fixed !important;
+  inset: 0;
+  z-index: 0;
+  touch-action: pan-y;
+}
+
+@layer components {
+  .glass {
+    @apply rounded-2xl border border-nexus-cyan/25 bg-[#0a1222]/70 shadow-[0_0_44px_-14px_rgba(37,217,248,0.4)] backdrop-blur-xl;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-nexus-cyan/40 px-4 py-2.5 font-mono text-xs uppercase tracking-widest text-nexus-text transition-colors duration-200 hover:border-nexus-cyan hover:bg-nexus-cyan/10 disabled:cursor-not-allowed disabled:opacity-40;
+  }
+  .btn-primary {
+    @apply border-nexus-cyan bg-nexus-cyan font-semibold text-nexus-bg hover:bg-nexus-cyan/85;
+  }
+  .btn-violet {
+    @apply border-nexus-violet/60 hover:border-nexus-violet hover:bg-nexus-violet/15;
+  }
+  .btn-icon {
+    @apply inline-flex h-10 w-10 items-center justify-center rounded-lg border border-nexus-cyan/30 text-nexus-text transition-colors hover:border-nexus-cyan hover:bg-nexus-cyan/10 disabled:opacity-40;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-[11px] text-nexus-muted;
+  }
+  button.chip {
+    @apply cursor-pointer transition-colors hover:border-nexus-cyan/60 hover:text-nexus-text;
+  }
+  .chip[aria-pressed="true"] {
+    @apply border-nexus-cyan bg-nexus-cyan/15 text-nexus-text;
+  }
+
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.22em] text-nexus-cyan;
+  }
+
+  .field-label {
+    @apply mb-1 block font-mono text-[11px] uppercase tracking-widest text-nexus-muted;
+  }
+  .field {
+    @apply w-full rounded-lg border border-white/15 bg-nexus-bg/70 px-3 py-2 text-sm text-nexus-text placeholder:text-nexus-muted/60 focus:border-nexus-cyan;
+  }
+  .field[aria-invalid="true"] {
+    @apply border-red-400;
+  }
+
+  .item-button {
+    @apply w-full rounded-xl border border-white/10 bg-white/[0.03] p-3 text-left transition-colors hover:border-nexus-cyan/50;
+  }
+  .item-button[aria-expanded="true"] {
+    @apply border-nexus-cyan/70 bg-nexus-cyan/10;
+  }
+
+  .panel-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(37, 217, 248, 0.4) transparent;
+  }
+
+  /* Labels rendered inside the 3D scene */
+  .station-tag {
+    @apply whitespace-nowrap rounded border border-nexus-cyan/30 bg-nexus-bg/70 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em] text-nexus-text backdrop-blur;
+  }
+  .station-tag span {
+    @apply mr-2 text-nexus-cyan;
+  }
+  .node-tag {
+    @apply flex flex-col items-center whitespace-nowrap text-center font-mono text-[11px] text-nexus-muted;
+  }
+  .node-tag b {
+    @apply font-semibold text-nexus-text;
+  }
+  .node-tag--active {
+    @apply rounded border border-nexus-cyan/40 bg-nexus-bg/80 px-2 py-1 text-nexus-text;
+  }
+  .marker-tag {
+    @apply whitespace-nowrap rounded border border-nexus-cyan/40 bg-nexus-bg/85 px-2 py-1 font-mono text-[11px] uppercase tracking-widest text-nexus-text;
+  }
+
+  .classic-section {
+    @apply mx-auto max-w-5xl px-5 py-12 md:py-16;
+  }
+  .classic-section h2 {
+    @apply mb-6 border-b border-nexus-cyan/20 pb-3 text-2xl font-semibold md:text-3xl;
+  }
+  .prose-nexus p {
+    @apply leading-relaxed text-nexus-muted;
+  }
+  .prose-nexus ul {
+    @apply list-disc space-y-1 pl-5 text-nexus-muted;
+  }
+}
+
+@keyframes scan-line {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+.reveal-1 {
+  animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+.reveal-2 {
+  animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both;
+}
+.reveal-3 {
+  animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both;
+}
+.reveal-4 {
+  animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.05s both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.sr-only-seo {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
