@@ -1,10 +1,9 @@
 import type { Skill, SkillCategory } from "@/types/portfolio";
 
 /**
- * SKILLS — SAMPLE CONTENT
- * No percentage bars: describe real experience instead. Project links on the
- * site are derived automatically by matching `name` against each project's
- * `technologies` list, so keep the names identical.
+ * SKILLS
+ * No percentage bars. Project links are derived by matching `name` against each
+ * project's `technologies`, so keep the names identical.
  */
 export const SKILL_CATEGORIES: SkillCategory[] = [
   "Programming Languages",
@@ -31,31 +30,36 @@ const s = (
 });
 
 export const skills: Skill[] = [
-  s("TypeScript", "Programming Languages", "Sample: daily use", "Primary language across frontend and backend."),
-  s("JavaScript", "Programming Languages", "Sample: daily use"),
-  s("Python", "Programming Languages", "Sample: scripting & data", "Automation and data tooling."),
-  s("GLSL", "Programming Languages", "Sample: shader authoring", "Custom shaders for WebGL scenes."),
-  s("React", "Frontend Technologies", "Sample: daily use", "Component architecture and performance tuning."),
-  s("Next.js", "Frontend Technologies", "Sample: production apps"),
-  s("Tailwind CSS", "Frontend Technologies", "Sample: design systems"),
-  s("Three.js", "Frontend Technologies", "Sample: interactive 3D"),
-  s("React Three Fiber", "Frontend Technologies", "Sample: declarative 3D"),
-  s("GSAP", "Frontend Technologies", "Sample: motion & timelines"),
-  s("Node.js", "Backend Technologies", "Sample: APIs and services"),
+  s("JavaScript", "Programming Languages"),
+  s("C", "Programming Languages"),
+  s("C++", "Programming Languages"),
+  s("Java", "Programming Languages"),
+  s("Python", "Programming Languages"),
+  s("Kotlin", "Programming Languages"),
+  s("HTML", "Frontend Technologies"),
+  s("CSS", "Frontend Technologies"),
+  s("React", "Frontend Technologies"),
+  s("Next.js", "Frontend Technologies"),
+  s("Vite", "Frontend Technologies"),
+  s("Node.js", "Backend Technologies"),
   s("Express", "Backend Technologies"),
-  s("GraphQL", "Backend Technologies", "Sample: typed APIs"),
-  s("PostgreSQL", "Databases", "Sample: schema design & tuning"),
-  s("Redis", "Databases", "Sample: caching"),
+  s("NestJS", "Backend Technologies"),
+  s("REST APIs", "Backend Technologies"),
+  s("Authentication (JWT)", "Backend Technologies"),
   s("MongoDB", "Databases"),
-  s("AWS", "Cloud Platforms", "Sample: compute, storage, networking"),
-  s("Vercel", "Cloud Platforms", "Sample: deployment of Next.js apps"),
-  s("Docker", "DevOps", "Sample: containerised services"),
-  s("GitHub Actions", "DevOps", "Sample: CI/CD pipelines"),
-  s("Terraform", "DevOps"),
-  s("Git", "Development Tools", "Sample: daily use"),
-  s("VS Code", "Development Tools"),
-  s("Figma", "Development Tools", "Sample: design hand-off"),
-  s("Accessibility (WCAG)", "Other Technical Skills", "Sample: audits and remediation"),
-  s("Performance Optimisation", "Other Technical Skills", "Sample: Core Web Vitals"),
-  s("Technical Writing", "Other Technical Skills"),
+  s("SQL", "Databases"),
+  s("Cloud basics", "Cloud Platforms", "Currently learning"),
+  s("Git", "Development Tools"),
+  s("GitHub", "Development Tools"),
+  s("NPM", "Development Tools"),
+  s("Postman", "Development Tools"),
+  s("Debugging", "Other Technical Skills"),
+  s("DSA", "Other Technical Skills", undefined, "Data structures and algorithms; practised on CodeChef and LeetCode."),
+  s("Cybersecurity fundamentals", "Other Technical Skills", "Currently learning"),
+  s("AI tools", "Other Technical Skills", "Currently learning"),
+  s("Communication", "Other Technical Skills"),
+  s("Teamwork", "Other Technical Skills"),
+  s("Problem Solving", "Other Technical Skills"),
+  s("Time Management", "Other Technical Skills"),
+  s("Adaptability", "Other Technical Skills"),
 ];

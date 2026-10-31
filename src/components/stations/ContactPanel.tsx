@@ -20,6 +20,14 @@ export function ContactPanel() {
         </a>{" "}
         or use the form below.
       </p>
+      {profile.phone && (
+        <p className="mt-2 text-sm text-nexus-text/90">
+          Phone:{" "}
+          <a href={`tel:${profile.phone.replace(/\s+/g, "")}`} className="text-nexus-cyan underline underline-offset-2">
+            {profile.phone}
+          </a>
+        </p>
+      )}
       <SocialLinks links={profile.socials} className="mt-3" />
       <div className="mt-3 flex flex-wrap gap-2">
         <ResumeButton />

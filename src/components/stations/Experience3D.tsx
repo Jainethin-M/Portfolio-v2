@@ -11,7 +11,7 @@ import type { Vec3 } from "@/config/cameraPaths";
 import { EXP_LINE, itemFocus, lineLayout } from "@/lib/stationLayouts";
 import { toggleItem } from "@/lib/interaction";
 import { geo, materials } from "@/lib/materials";
-import { formatMonth } from "@/lib/utils";
+import { formatRange } from "@/lib/utils";
 import { useNexusStore } from "@/stores/nexusStore";
 
 function Radar() {
@@ -76,9 +76,7 @@ function Pod({ index, position, selected }: { index: number; position: Vec3; sel
       <Html position={[0, -1.55, 0]} center distanceFactor={10} style={{ pointerEvents: "none" }}>
         <div className={`node-tag ${selected || hovered ? "node-tag--active" : ""}`}>
           <b>{item.company}</b>
-          <span>
-            {formatMonth(item.startDate)} – {item.endDate === "Present" ? "Now" : formatMonth(item.endDate)}
-          </span>
+          <span>{formatRange(item.startDate, item.endDate)}</span>
         </div>
       </Html>
     </group>

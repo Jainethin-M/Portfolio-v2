@@ -24,6 +24,7 @@ export interface Profile {
   bio: string[];
   location: string;
   email: string;
+  phone?: string;
   /** Public path inside /public. Missing files fall back to a procedural avatar. */
   portrait: string;
   portraitAlt: string;
@@ -60,8 +61,8 @@ export interface Experience {
   company: string;
   position: string;
   employmentType: EmploymentType;
-  location: string;
-  /** ISO month, e.g. "2022-03" */
+  location?: string;
+  /** ISO month, e.g. "2022-03"; a plain year or empty string is also accepted. */
   startDate: string;
   /** ISO month or "Present" */
   endDate: string;
@@ -135,9 +136,9 @@ export interface Achievement {
   id: string;
   title: string;
   category: string;
-  date: string;
+  date?: string;
   description: string;
-  story: string;
+  story?: string;
   image?: string;
   imageAlt?: string;
   relatedProject?: string;

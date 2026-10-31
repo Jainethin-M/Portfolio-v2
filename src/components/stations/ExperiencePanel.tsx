@@ -7,7 +7,7 @@ import { BulletList, ItemButton, PanelShell, StepNav } from "@/components/ui/Pan
 import { useItemSelection } from "@/hooks/useItemSelection";
 import { getProject } from "@/lib/projects";
 import { experienceFocus } from "@/lib/stationFocus";
-import { formatMonth } from "@/lib/utils";
+import { formatRange, joinMeta } from "@/lib/utils";
 
 const ids = experience.map((e) => e.id);
 
@@ -19,10 +19,10 @@ export function ExperiencePanel() {
       <ol className="space-y-2">
         {experience.map((e) => {
           const active = sel.selected === e.id;
-          const range = `${formatMonth(e.startDate)} – ${e.endDate === "Present" ? "Present" : formatMonth(e.endDate)}`;
+          const range = formatRange(e.startDate, e.endDate);
           return (
             <li key={e.id}>
-              <ItemButton active={active} onClick={() => sel.toggle(e.id)} eyebrow={range} title={`${e.position} · ${e.company}`} subtitle={`${e.employmentType} · ${e.location}`} controls={`exp-${e.id}`} />
+              <ItemButton active={active} onClick={() => sel.toggle(e.id)} eyebrow={range} title={`${e.position} · ${e.company}`} subtitle={joinMeta(e.employmentType, e.location)} controls={`exp-${e.id}`} />
               <div id={`exp-${e.id}`} hidden={!active} className="mt-2 rounded-xl border border-white/10 p-3 text-sm">
                 {active && (
                   <>
@@ -33,7 +33,7 @@ export function ExperiencePanel() {
                       <div>
                         <p className="font-semibold">{e.position}</p>
                         <p className="text-xs text-nexus-muted">
-                          {e.company} · {e.employmentType} · {e.location}
+                          {joinMeta(e.company, e.employmentType, e.location)}
                         </p>
                       </div>
                     </div>

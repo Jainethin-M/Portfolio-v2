@@ -16,3 +16,13 @@ export function formatMonth(value: string): string {
 }
 
 export const slugify = (v: string) => v.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+/** "2024-02" + "Present" -> "Feb 2024 – Present". Equal or missing dates collapse. */
+export function formatRange(start: string, end: string): string {
+  if (!start) return "";
+  const from = formatMonth(start);
+  if (!end || end === start) return from;
+  return `${from} – ${end === "Present" ? "Present" : formatMonth(end)}`;
+}
+
+export const joinMeta = (...parts: (string | undefined)[]) => parts.filter(Boolean).join(" · ");

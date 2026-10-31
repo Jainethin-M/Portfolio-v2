@@ -146,18 +146,26 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
         <Section title="Key features">
           <List items={project.features} />
         </Section>
-        <Section title="Architecture">
-          <p className="leading-relaxed text-nexus-muted">{project.architecture}</p>
-        </Section>
-        <Section title="Challenges">
-          <List items={project.challenges} />
-        </Section>
-        <Section title="Solutions">
-          <List items={project.solutions} />
-        </Section>
-        <Section title="Outcomes">
-          <List items={project.outcomes} />
-        </Section>
+        {project.architecture && (
+          <Section title="Architecture">
+            <p className="leading-relaxed text-nexus-muted">{project.architecture}</p>
+          </Section>
+        )}
+        {project.challenges.length > 0 && (
+          <Section title="Challenges">
+            <List items={project.challenges} />
+          </Section>
+        )}
+        {project.solutions.length > 0 && (
+          <Section title="Solutions">
+            <List items={project.solutions} />
+          </Section>
+        )}
+        {project.outcomes.length > 0 && (
+          <Section title="Outcomes">
+            <List items={project.outcomes} />
+          </Section>
+        )}
 
         {roles.length > 0 && (
           <Section title="Built during">

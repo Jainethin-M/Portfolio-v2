@@ -11,7 +11,7 @@ import { ContactForm } from "@/components/ui/ContactForm";
 import { ResumeButton } from "@/components/ui/ResumeButton";
 import { Placeholder, SafeImage } from "@/components/ui/SafeImage";
 import { SocialLinks } from "@/components/ui/Social";
-import { formatMonth } from "@/lib/utils";
+import { formatMonth, formatRange, joinMeta } from "@/lib/utils";
 
 const chip = "chip";
 
@@ -99,15 +99,11 @@ export function ClassicPortfolio() {
         <ol className="space-y-6">
           {experience.map((e) => (
             <li key={e.id} className="glass p-5">
-              <p className="eyebrow">
-                {formatMonth(e.startDate)} – {e.endDate === "Present" ? "Present" : formatMonth(e.endDate)}
-              </p>
+              <p className="eyebrow">{formatRange(e.startDate, e.endDate)}</p>
               <h3 className="mt-1 text-xl font-semibold">
                 {e.position} · {e.company}
               </h3>
-              <p className="text-nexus-muted">
-                {e.employmentType} · {e.location}
-              </p>
+              <p className="text-nexus-muted">{joinMeta(e.employmentType, e.location)}</p>
               <div className="prose-nexus mt-3">
                 <h4 className="font-semibold text-nexus-text">Responsibilities</h4>
                 <ul>
@@ -137,7 +133,7 @@ export function ClassicPortfolio() {
       <section id="classic-skills" className="classic-section" aria-labelledby="classic-skills-title">
         <h2 id="classic-skills-title">Skills</h2>
         <div className="grid gap-6 md:grid-cols-2">
-          {SKILL_CATEGORIES.map((cat) => (
+          {SKILL_CATEGORIES.filter((cat) => skills.some((s) => s.category === cat)).map((cat) => (
             <div key={cat}>
               <h3 className="mb-2 font-semibold">{cat}</h3>
               <ul className="space-y-1 text-sm text-nexus-muted">
@@ -195,6 +191,7 @@ export function ClassicPortfolio() {
 
       <section id="classic-certificates" className="classic-section" aria-labelledby="classic-certificates-title">
         <h2 id="classic-certificates-title">Certificates</h2>
+        {certificates.length === 0 && <p className="text-nexus-muted">Certificates will be added soon.</p>}
         <ul className="grid gap-4 md:grid-cols-2">
           {certificates.map((c) => (
             <li key={c.id} className="glass p-5">
@@ -226,12 +223,10 @@ export function ClassicPortfolio() {
         <ul className="space-y-4">
           {achievements.map((a) => (
             <li key={a.id} className="glass p-5">
-              <p className="eyebrow">
-                {a.category} · {formatMonth(a.date)}
-              </p>
+              <p className="eyebrow">{joinMeta(a.category, a.date ? formatMonth(a.date) : undefined)}</p>
               <h3 className="mt-1 text-lg font-semibold">{a.title}</h3>
               <p className="prose-nexus mt-2">{a.description}</p>
-              <p className="prose-nexus mt-2">{a.story}</p>
+              {a.story && <p className="prose-nexus mt-2">{a.story}</p>}
               {a.evidenceUrl && (
                 <a href={a.evidenceUrl} target="_blank" rel="noopener noreferrer" className="btn mt-3 !px-3 !py-2">
                   Evidence<span className="sr-only"> (opens in a new tab)</span>
@@ -252,6 +247,14 @@ export function ClassicPortfolio() {
                 {profile.email}
               </a>
             </p>
+            {profile.phone && (
+              <p>
+                Phone:{" "}
+                <a href={`tel:${profile.phone.replace(/\s+/g, "")}`} className="text-nexus-cyan underline">
+                  {profile.phone}
+                </a>
+              </p>
+            )}
             <SocialLinks links={profile.socials} />
             <ResumeButton />
           </div>

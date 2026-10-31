@@ -86,15 +86,17 @@ export function ProjectsPanel() {
                       ))}
                     </ul>
                     <BulletList title="Key features" items={p.features} />
-                    <details className="mt-3 rounded-lg border border-white/10 p-2">
-                      <summary className="cursor-pointer font-mono text-[11px] uppercase tracking-widest text-nexus-cyan">
-                        Architecture, challenges &amp; outcomes
-                      </summary>
-                      <p className="mt-2 text-nexus-text/90">{p.architecture}</p>
-                      <BulletList title="Challenges" items={p.challenges} />
-                      <BulletList title="Solutions" items={p.solutions} />
-                      <BulletList title="Outcomes" items={p.outcomes} />
-                    </details>
+                    {(p.architecture || p.challenges.length + p.solutions.length + p.outcomes.length > 0) && (
+                      <details className="mt-3 rounded-lg border border-white/10 p-2">
+                        <summary className="cursor-pointer font-mono text-[11px] uppercase tracking-widest text-nexus-cyan">
+                          Architecture, challenges &amp; outcomes
+                        </summary>
+                        {p.architecture && <p className="mt-2 text-nexus-text/90">{p.architecture}</p>}
+                        <BulletList title="Challenges" items={p.challenges} />
+                        <BulletList title="Solutions" items={p.solutions} />
+                        <BulletList title="Outcomes" items={p.outcomes} />
+                      </details>
+                    )}
                     <div className="mt-3 flex flex-wrap gap-2">
                       <Link href={`/projects/${p.slug}`} className="btn btn-primary !px-3 !py-2">
                         Case study

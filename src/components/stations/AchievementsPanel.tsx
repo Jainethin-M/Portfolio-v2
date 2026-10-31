@@ -9,7 +9,7 @@ import { Placeholder, SafeImage } from "@/components/ui/SafeImage";
 import { useItemSelection } from "@/hooks/useItemSelection";
 import { getProject } from "@/lib/projects";
 import { achievementFocus } from "@/lib/stationFocus";
-import { formatMonth } from "@/lib/utils";
+import { formatMonth, joinMeta } from "@/lib/utils";
 
 const ids = achievements.map((a) => a.id);
 
@@ -26,7 +26,7 @@ export function AchievementsPanel() {
           const project = a.relatedProject ? getProject(a.relatedProject) : undefined;
           return (
             <li key={a.id}>
-              <ItemButton active={active} onClick={() => sel.toggle(a.id)} eyebrow={`${a.category} · ${formatMonth(a.date)}`} title={a.title} controls={`ach-${a.id}`} />
+              <ItemButton active={active} onClick={() => sel.toggle(a.id)} eyebrow={joinMeta(a.category, a.date ? formatMonth(a.date) : undefined)} title={a.title} controls={`ach-${a.id}`} />
               <div id={`ach-${a.id}`} hidden={!active} className="mt-2 rounded-xl border border-white/10 p-3 text-sm">
                 {active && (
                   <>
@@ -36,18 +36,22 @@ export function AchievementsPanel() {
                       </div>
                     )}
                     <p className="leading-relaxed text-nexus-text/90">{a.description}</p>
-                    <button
-                      type="button"
-                      className="btn mt-3 !px-3 !py-2"
-                      aria-expanded={storyOpen === a.id}
-                      aria-controls={`ach-story-${a.id}`}
-                      onClick={() => setStoryOpen(storyOpen === a.id ? null : a.id)}
-                    >
-                      {storyOpen === a.id ? "Hide the story" : "Read the story"}
-                    </button>
-                    <p id={`ach-story-${a.id}`} hidden={storyOpen !== a.id} className="mt-3 rounded-lg border border-nexus-violet/40 bg-nexus-violet/10 p-3 leading-relaxed">
-                      {a.story}
-                    </p>
+                    {a.story && (
+                      <>
+                        <button
+                          type="button"
+                          className="btn mt-3 !px-3 !py-2"
+                          aria-expanded={storyOpen === a.id}
+                          aria-controls={`ach-story-${a.id}`}
+                          onClick={() => setStoryOpen(storyOpen === a.id ? null : a.id)}
+                        >
+                          {storyOpen === a.id ? "Hide the story" : "Read the story"}
+                        </button>
+                        <p id={`ach-story-${a.id}`} hidden={storyOpen !== a.id} className="mt-3 rounded-lg border border-nexus-violet/40 bg-nexus-violet/10 p-3 leading-relaxed">
+                          {a.story}
+                        </p>
+                      </>
+                    )}
                     <div className="mt-3 flex flex-wrap gap-2">
                       {project && (
                         <Link href={`/projects/${project.slug}`} className="btn !px-3 !py-2">

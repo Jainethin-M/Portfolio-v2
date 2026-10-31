@@ -75,7 +75,8 @@ export function CertificatesPanel() {
 
   return (
     <PanelShell station="certificates">
-      {sel.index < 0 && <p className="mb-3 text-sm text-nexus-muted">Select a framed certificate, or choose one below.</p>}
+      {certificates.length === 0 && <p className="text-sm text-nexus-muted">Certificates will be added soon.</p>}
+      {sel.index < 0 && certificates.length > 0 && <p className="mb-3 text-sm text-nexus-muted">Select a framed certificate, or choose one below.</p>}
       <ol className="space-y-2">
         {certificates.map((c) => {
           const active = sel.selected === c.id;
